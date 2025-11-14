@@ -1,6 +1,6 @@
 function unzip-to-dir --description "Unzip <file.zip> into a directory with the same base name"
     # Flags: --force to overwrite target dir, --quiet for less output, --help for usage
-    argparse -n unzip-to-dir 'h/help' 'f/force' 'q/quiet' -- $argv
+    argparse -n unzip-to-dir h/help f/force q/quiet -- $argv
     or return 1
 
     if set -q _flag_help
@@ -25,10 +25,10 @@ function unzip-to-dir --description "Unzip <file.zip> into a directory with the 
     end
 
     # Require .zip (case-insensitive)
-    if not string match -r -i -q '.*\.zip$' -- "$zipfile"
-        echo "Error: not a .zip file: $zipfile"
-        return 1
-    end
+    # if not string match -r -i -q '.*\.zip$' -- "$zipfile"
+    #     echo "Error: not a .zip file: $zipfile"
+    #     return 1
+    # end
 
     # Derive target dir from the basename without .zip (case-insensitive)
     set base (basename -- "$zipfile")
